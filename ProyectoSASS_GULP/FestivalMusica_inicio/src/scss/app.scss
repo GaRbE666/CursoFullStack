@@ -1,5 +1,10 @@
-$rojo: red;
+//Forma antigua
+/*
+@import 'base/variables';
+@import 'contenido/contenido';*/
 
-body{
-    background-color: $rojo;
-}
+//Forma nueva
+@use 'base';
+
+
+
