@@ -26,7 +26,7 @@ function imagenes(done){
 
     src('src/img/**/*{jpg,png}')
     .pipe(cache( imagemin(opciones)))
-    .pipe( dest('built/img'));
+    .pipe( dest('build/img'));
 
     done();
 }
@@ -39,7 +39,7 @@ function versionWebp(done){
 
     src('src/img/**/*.{png,jpg}')
     .pipe(webp(opciones))
-    .pipe( dest('built/img'));
+    .pipe( dest('build/img'));
     done();
 }
 
@@ -51,7 +51,7 @@ function versionAvif(done){
 
     src('src/img/**/*.{png,jpg}')
     .pipe(avif(opciones))
-    .pipe( dest('built/img'));
+    .pipe( dest('build/img'));
     done();
 }
 
