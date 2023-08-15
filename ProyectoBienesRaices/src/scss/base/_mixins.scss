@@ -31,8 +31,10 @@
     margin-top: calc($separacion / 2);
     display: $display;
     text-align: center;
+    border: none;
 
     &:hover{
         background-color: darken($bgColor, 5);
+        cursor: pointer;
     }
 }
