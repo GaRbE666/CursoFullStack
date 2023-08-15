@@ -1,6 +1,6 @@
 .iconos-nosotros{
     @include tablet{
-        @include grid(3,2);
+        @include grid(3,2rem);
     }
 }
 
