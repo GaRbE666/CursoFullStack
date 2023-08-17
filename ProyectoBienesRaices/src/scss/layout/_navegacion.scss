@@ -39,7 +39,8 @@
 
     visibility: hidden;
     opacity: 0;
-    transition: visibility .3s ease-in-out, opacity 0.5s linear;
+    transition: visibility .3s ease-in-out, opacity 0.5s linear, height 0.5s linear;
+    height: 0;
 
     @include tablet{
         display: flex;
@@ -83,4 +84,5 @@
 .mostrar{
     visibility: visible;
     opacity: 1;
+    height: auto;
 }
