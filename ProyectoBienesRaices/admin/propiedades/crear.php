@@ -4,7 +4,9 @@
     require '../../includes/config/database.php';
     $db = conectaDB();
 
-    var_dump($db);
+    echo "<pre>";
+    var_dump($_POST);
+    echo "</pre>";
 
     require '../../includes/funciones.php';
     incluirTemplate('header');
@@ -14,18 +16,18 @@
         <h1>Crear</h1>
         <a href="/admin" class="boton boton-verde">Volver</a>
 
-        <form class="formulario">
+        <form class="formulario" method="POST" action="/admin/propiedades/crear.php">
             <fieldset>
                 <legend>Informaci&oacute;n General</legend>
 
                 <label for="titulo">Titulo:</label>
-                <input type="text" id="titulo" placeholder="Titulo propiedad">
+                <input type="text" id="titulo" name="titulo" placeholder="Titulo propiedad">
 
                 <label for="precio">Precio:</label>
-                <input type="number" id="precio" placeholder="Precio propiedad">
+                <input type="number" id="precio" name="precio" placeholder="Precio propiedad">
 
                 <label for="iamgen">Imagen:</label>
-                <input type="file" id="iamgen" accept="image/jpeg, image/png">
+                <input type="file" id="iamgen" name="" accept="image/jpeg, image/png">
 
                 <label for="descripcion">Descripci&oacute;n</label>
                 <textarea id="descripcion"></textarea>
