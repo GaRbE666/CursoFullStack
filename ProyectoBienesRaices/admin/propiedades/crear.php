@@ -1,4 +1,11 @@
 <?php
+
+    //BBDD
+    require '../../includes/config/database.php';
+    $db = conectaDB();
+
+    var_dump($db);
+
     require '../../includes/funciones.php';
     incluirTemplate('header');
 ?>
