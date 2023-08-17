@@ -42,15 +42,15 @@ function javascript() {
 function imagenes() {
     return src(paths.imagenes)
         .pipe(cache(imagemin({ optimizationLevel: 3 })))
-        .pipe(dest('build/img'))
-        .pipe(notify({ message: 'Imagen Completada' }));
+        .pipe(dest('build/img'));
+        //.pipe(notify({ message: 'Imagen Completada' }));
 }
 
 function versionWebp() {
     return src(paths.imagenes)
         .pipe(webp())
-        .pipe(dest('build/img'))
-        .pipe(notify({ message: 'Imagen Completada' }));
+        .pipe(dest('build/img'));
+        //.pipe(notify({ message: 'Imagen Completada' }));
 }
 
 
