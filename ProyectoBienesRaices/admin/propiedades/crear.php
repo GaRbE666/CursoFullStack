@@ -26,9 +26,6 @@
         var_dump($_POST);
         echo "</pre>"; */
 
-        
-
-        exit;
 
         $titulo = mysqli_real_escape_string($db, $_POST['titulo']);
         $precio = mysqli_real_escape_string($db, $_POST['precio']);
@@ -38,6 +35,9 @@
         $garaje = mysqli_real_escape_string($db, $_POST['garaje']);
         $vendedorId = mysqli_real_escape_string($db, $_POST['vendedor']);
         $creado = date('Y/m/d');
+
+        //Asignar files hacia un variable
+        $imagen = $_FILES['imagen'];
 
         if(!$titulo){
             $errores[] = "Debes añadir un titulo";
@@ -65,6 +65,17 @@
 
         if(!$vendedorId){
             $errores[] = "Elige un vendedor";
+        }
+
+        if(!$imagen['name']){
+            $errores[] = "La imagen es obligatoria";
+        }
+
+        //Validar por tamaño
+        $medida = 1000 * 100;
+
+        if($imagen['size'] > $medida){
+            $errores[] = "La imagen es demasiado pesada";
         }
 
 /*         echo "<pre>";
@@ -112,7 +123,7 @@
                 <input type="number" id="precio" name="precio" placeholder="Precio propiedad" value="<?php echo $precio;?>">
 
                 <label for="iamgen">Imagen:</label>
-                <input type="file" id="iamgen" accept="image/jpeg, image/png">
+                <input type="file" id="iamgen" accept="image/jpeg, image/png" name="imagen">
 
                 <label for="descripcion">Descripci&oacute;n</label>
                 <textarea id="descripcion" name="descripcion"><?php echo $descripcion;?></textarea>
