@@ -7,6 +7,14 @@
     //Array con mensajes de errores
     $errores = [];
 
+    $titulo = '';
+    $precio = '';
+    $descripcion = '';
+    $habitaciones = '';
+    $wc = '';
+    $garaje = '';
+    $vendedorId = '';
+
     //Ejecutar el codigo despues de que el usuario envia el formulario
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
 /*         echo "<pre>";
@@ -87,29 +95,29 @@
                 <legend>Informaci&oacute;n General</legend>
 
                 <label for="titulo">Titulo:</label>
-                <input type="text" id="titulo" name="titulo" placeholder="Titulo propiedad">
+                <input type="text" id="titulo" name="titulo" placeholder="Titulo propiedad" value="<?php echo $titulo?>">
 
                 <label for="precio">Precio:</label>
-                <input type="number" id="precio" name="precio" placeholder="Precio propiedad">
+                <input type="number" id="precio" name="precio" placeholder="Precio propiedad" value="<?php echo $precio ?>">
 
                 <label for="iamgen">Imagen:</label>
                 <input type="file" id="iamgen" accept="image/jpeg, image/png">
 
                 <label for="descripcion">Descripci&oacute;n</label>
-                <textarea id="descripcion" name="descripcion"></textarea>
+                <textarea id="descripcion" name="descripcion"><?php echo $descripcion ?></textarea>
             </fieldset>
 
             <fieldset>
                 <legend>Informaci&oacute;n de la Propiedad</legend>
 
                 <label for="habitaciones">Habitaciones:</label>
-                <input type="number" id="habitaciones" name="habitaciones" placeholder="Ej: 3" min="1" max="9">
+                <input type="number" id="habitaciones" name="habitaciones" placeholder="Ej: 3" min="1" max="9" value="<?php echo $habitaciones?>">
 
                 <label for="wc">WC:</label>
-                <input type="number" id="wc" name="wc" placeholder="Ej: 3" min="1" max="9">
+                <input type="number" id="wc" name="wc" placeholder="Ej: 3" min="1" max="9" value="<?php echo $wc?>">
 
                 <label for="garaje">Garaje:</label>
-                <input type="number" id="garaje" name="garaje" placeholder="Ej: 3" min="1" max="9">
+                <input type="number" id="garaje" name="garaje" placeholder="Ej: 3" min="1" max="9" value="<?php echo $garaje?>">
 
             </fieldset>
 
