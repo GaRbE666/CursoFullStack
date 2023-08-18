@@ -26,6 +26,9 @@
         var_dump($_POST);
         echo "</pre>"; */
 
+        echo "<pre>";
+        var_dump($_FILES);
+        echo "</pre>";
 
         $titulo = mysqli_real_escape_string($db, $_POST['titulo']);
         $precio = mysqli_real_escape_string($db, $_POST['precio']);
@@ -69,14 +72,14 @@
 
         if(!$imagen['name']){
             $errores[] = "La imagen es obligatoria";
-        }
+        } 
 
-        //Validar por tamaño
-        $medida = 1000 * 100;
-
-        if($imagen['size'] > $medida){
+        //Validar por tamaño (1mb maximo)
+        $medida = 2000 * 2000;
+        echo $medida;
+/*         if($imagen['size'] > $medida){
             $errores[] = "La imagen es demasiado pesada";
-        }
+        } */
 
 /*         echo "<pre>";
         var_dump($errores);
@@ -86,6 +89,21 @@
 
         //Revisar el array de errores este vacio
         if(empty($errores)){
+
+            /*Subida de archivos*/
+            //Crear carpeta
+            $carpetaImagenes = '../../imagenes';
+
+            if(!is_dir($carpetaImagenes)){
+                mkdir($carpetaImagenes);
+            }
+
+            //subir la imagen
+            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . "/archivo.jpg");
+
+            exit;
+
+
             //Insertar en la base de datos
             $query = "INSERT INTO propiedades (titulo, precio, descripcion, habitaciones, wc, garaje, creado, vendedorId ) VALUES ('$titulo', '$precio', '$descripcion', '$habitaciones', '$wc', '$garaje', '$creado', '$vendedorId')";
 
@@ -112,7 +130,7 @@
             </div>
         <?php endforeach; ?>
 
-        <form class="formulario" method="POST" action="/admin/propiedades/crear.php">
+        <form class="formulario" method="POST" action="/admin/propiedades/crear.php" enctype="multipart/form-data">
             <fieldset>
                 <legend>Informaci&oacute;n General</legend>
 
@@ -122,8 +140,8 @@
                 <label for="precio">Precio:</label>
                 <input type="number" id="precio" name="precio" placeholder="Precio propiedad" value="<?php echo $precio;?>">
 
-                <label for="iamgen">Imagen:</label>
-                <input type="file" id="iamgen" accept="image/jpeg, image/png" name="imagen">
+                <label for="imagen">Imagen:</label>
+                <input type="file" id="imagen" accept="image/jpeg, image/png" name="imagen">
 
                 <label for="descripcion">Descripci&oacute;n</label>
                 <textarea id="descripcion" name="descripcion"><?php echo $descripcion;?></textarea>
