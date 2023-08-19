@@ -84,10 +84,6 @@
             $errores[] = "Elige un vendedor";
         }
 
-        if(!$imagen['name']){
-            $errores[] = "La imagen es obligatoria";
-        } 
-
         //Validar por tamaño (1mb maximo)
         $medida = 2000 * 2000;
         echo $medida;
@@ -104,30 +100,14 @@
         //Revisar el array de errores este vacio
         if(empty($errores)){
 
-
-            /*Subida de archivos*/
-            //Crear carpeta
-            $carpetaImagenes = '../../imagenes/';
-
-            if(!is_dir($carpetaImagenes)){
-                mkdir($carpetaImagenes);
-            }
-
-            //Generar un nombre unico
-            $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
-
-            //subir la imagen
-            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
-
-
             //Insertar en la base de datos
-            $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, garaje, creado, vendedorId ) VALUES ('$titulo', '$precio', '$nombreImagen', '$descripcion', '$habitaciones', '$wc', '$garaje', '$creado', '$vendedorId')";
+            $query = "UPDATE propiedades set titulo = '{$titulo}', precio = '{$precio}', descripcion = '{$descripcion}', habitaciones = {$habitaciones}, wc = {$wc}, garaje = {$garaje}, vendedorId = {$vendedorId} where id = {$id}";
 
             $resultado = mysqli_query($db, $query);
 
             if($resultado){
                 //redireccionar al usuario
-                header("Location: /admin?resultado=1");
+                header("Location: /admin?resultado=2");
             }
         }
     }
@@ -146,7 +126,7 @@
             </div>
         <?php endforeach; ?>
 
-        <form class="formulario" method="POST" action="/admin/propiedades/crear.php" enctype="multipart/form-data">
+        <form class="formulario" method="POST" enctype="multipart/form-data">
             <fieldset>
                 <legend>Informaci&oacute;n General</legend>
 
@@ -159,7 +139,7 @@
                 <label for="imagen">Imagen:</label>
                 <input type="file" id="imagen" accept="image/jpeg, image/png" name="imagen">
 
-                <img src="/imagenes/<?php echo $imagenPropiedad?>" class="iamgen-small">
+                <img src="/imagenes/<?php echo $imagenPropiedad?>" class="imagen-small">
 
                 <label for="descripcion">Descripci&oacute;n</label>
                 <textarea id="descripcion" name="descripcion"><?php echo $descripcion;?></textarea>
