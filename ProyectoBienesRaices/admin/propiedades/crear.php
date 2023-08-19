@@ -90,7 +90,7 @@
         //Revisar el array de errores este vacio
         if(empty($errores)){
 
-            
+
             /*Subida de archivos*/
             //Crear carpeta
             $carpetaImagenes = '../../imagenes/';
@@ -113,7 +113,7 @@
 
             if($resultado){
                 //redireccionar al usuario
-                header("Location: /admin");
+                header("Location: /admin?resultado=1");
             }
         }
     }
