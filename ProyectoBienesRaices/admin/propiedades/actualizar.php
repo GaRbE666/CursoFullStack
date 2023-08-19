@@ -12,6 +12,11 @@
     require '../../includes/config/database.php';
     $db = conectaDB();
 
+    //Obtener los datos de la propiedad
+    $query = "select * from propiedades where id = {$id}";
+    $resultado = mysqli_query($db, $query);
+    $propiedad = mysqli_fetch_assoc($resultado);
+
     //Cosnultar para obtener los vendedores
     $query = "select * from vendedores";
     $resultado = mysqli_query($db, $query);
@@ -19,13 +24,14 @@
     //Array con mensajes de errores
     $errores = [];
 
-    $titulo = '';
-    $precio = '';
-    $descripcion = '';
-    $habitaciones = '';
-    $wc = '';
-    $garaje = '';
-    $vendedorId = '';
+    $titulo = $propiedad['titulo'];
+    $precio = $propiedad['precio'];
+    $descripcion = $propiedad['descripcion'];
+    $habitaciones = $propiedad['habitaciones'];
+    $wc = $propiedad['wc'];
+    $garaje = $propiedad['garaje'];
+    $vendedorId = $propiedad['vendedorId'];
+    $imagenPropiedad = $propiedad['imagen'];
     
 
     //Ejecutar el codigo despues de que el usuario envia el formulario
@@ -152,6 +158,8 @@
 
                 <label for="imagen">Imagen:</label>
                 <input type="file" id="imagen" accept="image/jpeg, image/png" name="imagen">
+
+                <img src="/imagenes/<?php echo $imagenPropiedad?>" class="iamgen-small">
 
                 <label for="descripcion">Descripci&oacute;n</label>
                 <textarea id="descripcion" name="descripcion"><?php echo $descripcion;?></textarea>
