@@ -1,5 +1,6 @@
 <?php
     $resultado = $_GET['resultado'] ?? null;
+
     require '../includes/funciones.php';
     incluirTemplate('header');
 ?>
@@ -9,7 +10,33 @@
         <?php if(intval($resultado) === 1): ?>
             <p class="alerta exito"> Anuncio Creado Correctamente</p>
         <?php endif; ?>
+
         <a href="/admin/propiedades/crear.php" class="boton boton-verde">Nueva Propiedad</a>
+
+        <table class="propiedades">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titulo</th>
+                    <th>Imagen</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Casa en la playa</td>
+                    <td><img src="/imagenes/47146d8c9bda7b83655767128ce2a3b9.jpg" alt="Imagen de la casa" class="imagen-tabla"></td>
+                    <td>120000€</td>
+                    <td>
+                        <a href="" class="boton-rojo-block">Eliminar</a>
+                        <a href="" class="boton-amarillo-block">Actualizar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </main>
 
 <?php
