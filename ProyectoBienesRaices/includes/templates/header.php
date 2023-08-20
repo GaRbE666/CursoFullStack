@@ -30,8 +30,6 @@
                 </div>
             </div>
 
-            <?php if($inicio) { ?>
-            <h1>Centa de Casas y Departamentos Exclusivos de Lujo</h1>
-            <?php } ?>
+            <?php echo $inicio ? "<h1>Centa de Casas y Departamentos Exclusivos de Lujo</h1>" : '' ?>
         </div>
     </header>
