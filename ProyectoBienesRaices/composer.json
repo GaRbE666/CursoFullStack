@@ -1,0 +1,17 @@
+{
+    "name": "jaime/proyecto-bienes-raices",
+    "description": "Creando un proyecto con POO",
+    "type": "project",
+    "authors": [
+        {
+            "name": "GaRbE666",
+            "email": "jaimegon17@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4":{
+            "App\\" : "./classes"
+        }
+    }
+}

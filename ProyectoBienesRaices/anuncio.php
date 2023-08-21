@@ -7,8 +7,7 @@
         header('Location: /');
     }
 
-    //Importar la conexion
-    require 'includes/config/database.php';
+    require 'includes/app.php';
     $db = conectaDB();
 
     //Eliminar el archivo del repositorio local
@@ -22,7 +21,6 @@
 
     $propiedad = mysqli_fetch_assoc($resultado);
 
-    require 'includes/funciones.php';
     incluirTemplate('header');
 ?>
 
