@@ -10,6 +10,8 @@ class Propiedad{
     protected static $db;
     protected static $columnasDb = ['id', 'titulo', 'precio', 'imagen', 'descripcion', 'habitaciones', 'wc', 'garaje', 'creado', 'vendedorId'];
 
+    //Errores
+    protected static $errores = [];
 
     public $id;
     public $titulo;
@@ -53,7 +55,6 @@ class Propiedad{
 
         $resultado = self::$db->query($query);
 
-        debuguear($resultado);
     }
 
     public function sanitizarDatos() {
@@ -83,6 +84,48 @@ class Propiedad{
 
         return $atributos;
 
+    }
+
+    //Validacion
+    public static function getErrores() {
+        return self::$errores;
+    }
+
+    public function validar(){
+
+        if(!$this->titulo){
+            self::$errores[] = "Debes añadir un titulo";
+        }
+
+        if(!$this->precio){
+            self::$errores[] = "Debes añadir un precio";
+        }
+
+        if(strlen($this->descripcion) < 50){
+            self::$errores[] = "La descripcion es obligatoria y debe tener mas de 50 caracteres";
+        }
+
+        if(!$this->habitaciones){
+            self::$errores[] = "El número de habitaciones es obligatorio";
+        }
+
+        if(!$this->wc){
+            self::$errores[] = "El número de wc es obligatorio";
+        }
+
+        if(!$this->garaje){
+            self::$errores[] = "El número de garajes es obligatorio";
+        }
+
+        if(!$this->vendedorId){
+            self::$errores[] = "Elige un vendedor";
+        }
+
+/*         if(!$this->imagen['name']){
+            self::$errores[] = "La imagen es obligatoria";
+        }  */
+
+        return self::$errores;
     }
 
     //Definir la conexion a la BD
