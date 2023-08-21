@@ -1,15 +1,11 @@
 <?php
 
-    require '../includes/app.php';
+    require '../../includes/app.php';
     use App\Propiedad;
 
-    $propiedad = new Propiedad;
 
-    $auth = estaAutenticado();
+    estaAutenticado();
 
-    if(!$auth){
-        header('Location: /');
-    }
 
     $db = conectaDB();
 
