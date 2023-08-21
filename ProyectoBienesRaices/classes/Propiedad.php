@@ -44,8 +44,12 @@ class Propiedad{
         $atributos = $this->sanitizarDatos();
 
         //Insertar en la base de datos
-        $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, garaje, creado, vendedorId ) 
-                  VALUES ('$this->titulo', '$this->precio', '$this->imagen', '$this->descripcion', '$this->habitaciones', '$this->wc', '$this->garaje', '$this->creado', '$this->vendedorId')";
+        $query = "INSERT INTO propiedades (";
+        $query .= join(', ', array_keys($atributos));
+        $query .= " ) VALUES ('";
+        $query .= join("', '", array_values($atributos));
+        $query .= "')";
+        
 
         $resultado = self::$db->query($query);
 
@@ -76,7 +80,7 @@ class Propiedad{
             }
             $atributos[$columna] = $this->$columna;
         }
-        debuguear($atributos);
+
         return $atributos;
 
     }
