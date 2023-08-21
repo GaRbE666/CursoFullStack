@@ -30,6 +30,18 @@
 
                 //Verificar si el password es correcto o no
                 $auth = password_verify($password, $usuario['password']);
+
+                if($auth){
+                    //el usuario esta autenticado
+                    session_start();
+
+                    //Llenar el array de la sesion
+                    $_SESSION['usuario'] = $usuario['email'];
+                    $_SESSION['login'] = true;
+                    
+                }else{
+                    $errores[] = "El password es incorrecto";
+                }
             }else{
                 $errores[] = "El usuario no existe";
             }
