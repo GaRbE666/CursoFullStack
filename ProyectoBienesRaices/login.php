@@ -21,7 +21,7 @@ require 'includes/app.php';
 
         if(empty($errores)){
             //Revisar si el usuario existe
-            $query = "Select * from usuarios where email = {$email}";
+            $query = "Select * from usuarios where email = '{$email}';";
             $resultado = mysqli_query($db, $query);
 
             if($resultado -> num_rows){
@@ -38,8 +38,8 @@ require 'includes/app.php';
                     //Llenar el array de la sesion
                     $_SESSION['usuario'] = $usuario['email'];
                     $_SESSION['login'] = true;
-
-                    header('Location /admin');
+                    echo 'He hecho login';
+                    header('Location: /admin');
                     
                 }else{
                     $errores[] = "El password es incorrecto";
