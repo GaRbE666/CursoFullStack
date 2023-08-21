@@ -8,6 +8,8 @@ class Propiedad{
     
     //BBDD
     protected static $db;
+    protected static $columnasDb = ['id', 'titulo', 'precio', 'imagen', 'descripcion', 'habitaciones', 'wc', 'garaje', 'creado', 'vendedorId'];
+
 
     public $id;
     public $titulo;
@@ -37,6 +39,10 @@ class Propiedad{
 
     public function guardar() 
     {
+
+        //Sanitizar los datos
+        $atributos = $this->sanitizarDatos();
+
         //Insertar en la base de datos
         $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, garaje, creado, vendedorId ) 
                   VALUES ('$this->titulo', '$this->precio', '$this->imagen', '$this->descripcion', '$this->habitaciones', '$this->wc', '$this->garaje', '$this->creado', '$this->vendedorId')";
@@ -44,6 +50,35 @@ class Propiedad{
         $resultado = self::$db->query($query);
 
         debuguear($resultado);
+    }
+
+    public function sanitizarDatos() {
+
+        $atributos = $this->atributos();
+        $sanitizado = [];
+
+        foreach($atributos as $key => $value){
+            $sanitizado[$key] = self::$db->escape_string($value);
+        }
+
+        return $sanitizado;
+
+    }
+
+    //Identificar y unir los atributos de la BD
+    public function atributos(){
+
+        $atributos = [];
+
+        foreach(self::$columnasDb as $columna){
+            if($columna ==='id'){
+                continue;
+            }
+            $atributos[$columna] = $this->$columna;
+        }
+        debuguear($atributos);
+        return $atributos;
+
     }
 
     //Definir la conexion a la BD
