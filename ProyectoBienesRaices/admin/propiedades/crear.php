@@ -2,7 +2,7 @@
 
     require '../../includes/app.php';
     use App\Propiedad;
-
+    use Intervention\Image\ImageManagerStatic as Image;
 
     estaAutenticado();
 
@@ -28,39 +28,37 @@
     //Ejecutar el codigo despues de que el usuario envia el formulario
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
+        //Crea una nueva instancia
         $propiedad = new Propiedad($_POST);
 
+        /*Subida de archivos*/
+        //Generar un nombre unico
+        $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+
+        //Setear la imagen
         $errores = $propiedad->validar();
 
-
+        if($_FILES['imagen']['temp_name']){
+            //Realiza un resize a la imagen con intervention
+            $image = Image::make($_FILES['imagen']['tmp_name'])->fit(800,600);
+            $propiedad->setImagen($nombreImagen);
+        }
 
         //Revisar el array de errores este vacio
         if(empty($errores)){
 
-            $propiedad -> guardar();
-
-
-            //Asignar files hacia un variable
-            $imagen = $_FILES['imagen'];
-
-            /*Subida de archivos*/
-            //Crear carpeta
-            $carpetaImagenes = '../../imagenes/';
-
-            if(!is_dir($carpetaImagenes)){
-                mkdir($carpetaImagenes);
+            //Crear la carpeta para subir imagenes
+            if(!is_dir(CARPETA_IMAGENES)){
+                mkdir(CARPETA_IMAGENES);
             }
 
-            //Generar un nombre unico
-            $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+            //Guarda la imagen en el servidor
+            $image->save(CARPETA_IMAGENES . $nombreImagen);
 
-            //subir la imagen
-            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
+            //Guarda en la base de datos
+            $resutlado = $propiedad -> guardar();
 
-
-            
-            $resultado = mysqli_query($db, $query);
-
+            //Mensaje de exito o error
             if($resultado){
                 //redireccionar al usuario
                 header("Location: /admin?resultado=1");
