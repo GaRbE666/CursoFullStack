@@ -48,17 +48,11 @@ use Intervention\Image\ImageManagerStatic as Image;
         //Revisar el array de errores este vacio
         if(empty($errores)){
 
-            exit;
+            //Almacenar la imagen 
+            $image->saves(CARPETA_IMAGENES . $nombreImagen);
 
-            //Insertar en la base de datos
-            $query = "UPDATE propiedades set titulo = '{$titulo}', precio = '{$precio}', imagen = '{$nombreImagen}', descripcion = '{$descripcion}', habitaciones = {$habitaciones}, wc = {$wc}, garaje = {$garaje}, vendedorId = {$vendedorId} where id = {$id}";
+            $propiedad->guardar();
 
-            $resultado = mysqli_query($db, $query);
-
-            if($resultado){
-                //redireccionar al usuario
-                header("Location: /admin?resultado=2");
-            }
         }
     }
 

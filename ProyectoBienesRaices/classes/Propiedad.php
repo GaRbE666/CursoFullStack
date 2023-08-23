@@ -39,7 +39,15 @@ class Propiedad{
         $this->vendedorId = $args['vendedorId'] ?? 1;
     }
 
-    public function guardar() 
+    public function guardar() {
+        if(isset($this->id)){
+            $this->actualizar();
+        }else{
+            $this->crear();
+        }
+    }
+
+    public function crear() 
     {
 
         //Sanitizar los datos
@@ -56,6 +64,32 @@ class Propiedad{
         $resultado = self::$db->query($query);
 
         return $resultado;
+
+    }
+
+    public function actualizar() {
+
+        //Sanitizar los datos
+        $atributos = $this->sanitizarDatos();
+
+        $valores = [];
+
+        foreach($atributos as $key => $value){
+            $valores[] = "{$key} = '{$value}'";
+        }
+
+        $query = "UPDATE propiedades set ";
+        $query .= join(', ', $valores);
+        $query .= "where id = '" . self::$db->escape_string($this->id) . "' ";
+        $query .= " LIMIT 1";
+
+        $resultado = self::$db->query($query);
+
+        
+        if($resultado){
+            //redireccionar al usuario
+            header("Location: /admin?resultado=2");
+        }
 
     }
 
@@ -134,7 +168,7 @@ class Propiedad{
     public function setImagen($imagen) {
 
         //Eliminar imagen previa
-        if($this->id){
+        if(isset($this->id)){
             //Comprobar si existe el archivo
             $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
             if($existeArchivo){
