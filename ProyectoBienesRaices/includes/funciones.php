@@ -24,4 +24,10 @@ define('CARPETA_IMAGENES', __DIR__ . '/../imagenes/');
         exit;
     }
 
+    //Escapa/Sanitizar el HTML
+    function s($html) {
+        $s = htmlspecialchars($html);
+        return $s;
+    }
+
 ?>
