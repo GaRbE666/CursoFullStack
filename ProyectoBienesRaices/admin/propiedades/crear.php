@@ -56,7 +56,7 @@
             $image->save(CARPETA_IMAGENES . $nombreImagen);
 
             //Guarda en la base de datos
-            $resutlado = $propiedad -> guardar();
+            $resutlado = $propiedad->guardar();
 
             //Mensaje de exito o error
             if($resultado){

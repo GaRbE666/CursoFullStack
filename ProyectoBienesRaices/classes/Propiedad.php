@@ -27,16 +27,16 @@ class Propiedad{
     public function __construct($args = [])
     {   
 
-        $this -> id = $args['id'] ?? '';
-        $this -> titulo = $args['titulo'] ?? '';
-        $this -> precio = $args['precio'] ?? '';
-        $this -> imagen = $args['imagen'] ?? '';
-        $this -> descripcion = $args['descripcion'] ?? '';
-        $this -> habitaciones = $args['habitaciones'] ?? '';
-        $this -> wc = $args['wc'] ?? '';
-        $this -> garaje = $args['garaje'] ?? '';
-        $this -> creado = date("Y/m/d");
-        $this -> vendedorId = $args['vendedorId'] ?? '';
+        $this->id = $args['id'] ?? '';
+        $this->titulo = $args['titulo'] ?? '';
+        $this->precio = $args['precio'] ?? '';
+        $this->imagen = $args['imagen'] ?? '';
+        $this->descripcion = $args['descripcion'] ?? '';
+        $this->habitaciones = $args['habitaciones'] ?? '';
+        $this->wc = $args['wc'] ?? '';
+        $this->garaje = $args['garaje'] ?? '';
+        $this->creado = date("Y/m/d");
+        $this->vendedorId = $args['vendedorId'] ?? '';
     }
 
     public function guardar() 
@@ -144,6 +144,43 @@ class Propiedad{
         self::$db = $dataBase;
     }
 
+    //Lista todas las propiedades
+    public static function all() {
+        $query = "select * from propiedades";
+
+        $resultado = self::consultarSQL($query);
+
+        return $resultado;
+    }
+
+    public static function consultarSQL($query){
+        //Consultar la base de datos
+        $resultado = self::$db->query($query);
+
+        //Iterar los resultados
+        $array = [];
+        while($registro = $resultado->fetch_assoc()){
+            $array[] = self::crearObjeto($registro);
+        }
+
+        //Liberar la memoria
+        $resultado->free();
+
+        //retornar los resultados
+        return $array;
+    }
+
+    protected static function crearObjeto($registro) {
+        $objeto = new self;
+
+        foreach($registro as $key => $value) {
+            if(property_exists( $objeto, $key)){
+                $objeto->$key = $value;
+            }
+        }
+
+        return $objeto;
+    }
 }
 
 ?>
