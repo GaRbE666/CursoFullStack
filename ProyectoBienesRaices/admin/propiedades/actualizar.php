@@ -1,8 +1,9 @@
 <?php
 
 use App\Propiedad;
-
+use Intervention\Image\ImageManagerStatic as Image;
     require '../../includes/app.php';
+    
 
     estaAutenticado();
 
@@ -32,36 +33,22 @@ use App\Propiedad;
 
         $propiedad->sincronizar($args);
 
+        //Validacion
         $errores = $propiedad->validar();
+
+        //subida de archivos
+        //Generar un nombre unico
+        $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+        if($_FILES['propiedad']['tmp_name']['imagen']){
+            //Realiza un resize a la imagen con intervention
+            $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800,600);
+            $propiedad->setImagen($nombreImagen);
+        }
 
         //Revisar el array de errores este vacio
         if(empty($errores)){
 
-            //Crear carpeta
-            $carpetaImagenes = '../../imagenes/';
-
-            if(!is_dir($carpetaImagenes)){
-                mkdir($carpetaImagenes);
-            }
-
-            $nombreImagen = '';
-
-            /*Subida de archivos*/
-
-            if($imagen['name']){
-                //Eliminar imagen previa
-                unlink($carpetaImagenes . $propiedad['imagen']);
-
-                //Generar un nombre unico
-                $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
-
-                //subir la imagen
-                move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
-            }else{
-                $nombreImagen = $propiedad['imagen'];
-            }
-
-
+            exit;
 
             //Insertar en la base de datos
             $query = "UPDATE propiedades set titulo = '{$titulo}', precio = '{$precio}', imagen = '{$nombreImagen}', descripcion = '{$descripcion}', habitaciones = {$habitaciones}, wc = {$wc}, garaje = {$garaje}, vendedorId = {$vendedorId} where id = {$id}";
