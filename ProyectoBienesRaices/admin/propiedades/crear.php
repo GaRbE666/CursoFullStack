@@ -22,7 +22,7 @@
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         //Crea una nueva instancia
-        $propiedad = new Propiedad($_POST);
+        $propiedad = new Propiedad($_POST['propiedad']);
 
         /*Subida de archivos*/
         //Generar un nombre unico
@@ -31,9 +31,9 @@
         //Setear la imagen
         $errores = $propiedad->validar();
 
-        if($_FILES['imagen']['temp_name']){
+        if($_FILES['propiedad']['tmp_name']['imagen']){
             //Realiza un resize a la imagen con intervention
-            $image = Image::make($_FILES['imagen']['tmp_name'])->fit(800,600);
+            $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800,600);
             $propiedad->setImagen($nombreImagen);
         }
 
