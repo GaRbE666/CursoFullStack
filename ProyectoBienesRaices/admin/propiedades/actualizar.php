@@ -51,6 +51,7 @@ use Intervention\Image\ImageManagerStatic as Image;
                 //Almacenar la imagen 
                 $image->saves(CARPETA_IMAGENES . $nombreImagen);
             }
+            
             $propiedad->guardar();
 
         }
