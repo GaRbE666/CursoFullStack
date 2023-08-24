@@ -20,9 +20,20 @@
 
         if($id){
 
-            $propiedad = Propiedad::findById($id);
+            $tipo = $_POST['tipo'];
 
-            $propiedad->eliminar();
+            if(validarTipoContenido($tipo)){
+                //compara lo que vamos a eliminar
+                if($tipo === 'vendedor'){
+                    $vendedor = Vendedor::findById($id);
+                    $vendedor->eliminar();
+                }else if($tipo === 'propiedad'){
+                    $propiedad = Propiedad::findById($id);
+                    $propiedad->eliminar();
+                }
+            }
+
+
 
         }
     }
@@ -68,6 +79,7 @@
                     <td>
                         <form method="POST" class="w-100">
                             <input type="hidden" name="id" value="<?php echo $propiedad->id;?>">
+                            <input type="hidden" name="tipo" value="propiedad">
                             <input type="submit" class="boton-rojo-block" value="Eliminar">    
                         </form>
                         
@@ -100,10 +112,11 @@
                     <td>
                         <form method="POST" class="w-100">
                             <input type="hidden" name="id" value="<?php echo $vendedor->id;?>">
+                            <input type="hidden" name="tipo" value="vendedor">
                             <input type="submit" class="boton-rojo-block" value="Eliminar">    
                         </form>
                         
-                        <a href="admin/propiedades/actualizar.php?id=<?php echo $vendedor->id;?>" class="boton-amarillo-block">Actualizar</a>
+                        <a href="admin/vendedores/actualizar.php?id=<?php echo $vendedor->id;?>" class="boton-amarillo-block">Actualizar</a>
                     </td>
                 </tr>
                 <?php endforeach ?>
