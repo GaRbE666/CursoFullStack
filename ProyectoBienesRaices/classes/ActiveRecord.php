@@ -114,44 +114,12 @@ class ActiveRecord{
 
     //Validacion
     public static function getErrores() {
-        return self::$errores;
+        return static::$errores;
     }
 
     public function validar(){
-
-        if(!$this->titulo){
-            self::$errores[] = "Debes añadir un titulo";
-        }
-
-        if(!$this->precio){
-            self::$errores[] = "Debes añadir un precio";
-        }
-
-        if(strlen($this->descripcion) < 50){
-            self::$errores[] = "La descripcion es obligatoria y debe tener mas de 50 caracteres";
-        }
-
-        if(!$this->habitaciones){
-            self::$errores[] = "El número de habitaciones es obligatorio";
-        }
-
-        if(!$this->wc){
-            self::$errores[] = "El número de wc es obligatorio";
-        }
-
-        if(!$this->garaje){
-            self::$errores[] = "El número de garajes es obligatorio";
-        }
-
-        if(!$this->vendedorId){
-            self::$errores[] = "Elige un vendedor";
-        }
-
-        if(!$this->imagen){
-            self::$errores[] = "La imagen es obligatoria";
-        } 
-
-        return self::$errores;
+        static::$errores= [];
+        return static::$errores;
     }
 
     //subida de archivos
