@@ -35,10 +35,11 @@
 <fieldset>
     <legend>Vendedor</legend>
 
-<!--     <select name="vendedorId">
-        <option value="">-- Seleccione --</option>
-        <?php while($row = mysqli_fetch_assoc($resultado)): ?>
-            <option <?php echo $vendedorId === $row['id'] ? 'selected' : '' ?> value="<?php echo s($propiedad->row['id']); ?>"><?php echo $row['nombre']. " " . $row['apellido']; ?></option>
-        <?php endwhile?>    
-    </select> -->
+    <label for="vendedor">Vendedor</label>
+    <select name="propiedad[vendedorId]" id="vendedor">
+        <option selected value="">-- Seleccione --</option>
+        <?php foreach($vendedores as $vendedor) {?>
+            <option <?php echo $propiedad->vendedorId === $vendedor->id ? 'selected' : ''?> value="<?php echo s($vendedorId->id); ?>"><?php echo s($vendedor->nombre) . " " . s($vendedor->apellido); ?></option>
+        <?php } ?>
+    </select>
 </fieldset>
