@@ -28,14 +28,13 @@
         //Generar un nombre unico
         $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
 
-        //Setear la imagen
-        $errores = $propiedad->validar();
-
         if($_FILES['propiedad']['tmp_name']['imagen']){
             //Realiza un resize a la imagen con intervention
             $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800,600);
             $propiedad->setImagen($nombreImagen);
         }
+
+        $errores = $propiedad->validar();
 
         //Revisar el array de errores este vacio
         if(empty($errores)){
@@ -49,13 +48,7 @@
             $image->save(CARPETA_IMAGENES . $nombreImagen);
 
             //Guarda en la base de datos
-            $resutlado = $propiedad->guardar();
-
-            //Mensaje de exito o error
-            if($resultado){
-                //redireccionar al usuario
-                header("Location: /admin?resultado=1");
-            }
+            $propiedad->guardar();
         }
     }
 
