@@ -17,21 +17,11 @@
         $id = filter_var($id, FILTER_VALIDATE_INT);
 
         if($id){
-            //Eliminar el archivo del repositorio local
-            $query = "select imagen from propiedades where id = {$id};";
 
-            $resultado = mysqli_query($db, $query);
-            $propiedad = mysqli_fetch_assoc($resultado);
+            $propiedad = Propiedad::findById($id);
 
-            unlink('../imagenes/' . $propiedad['imagen']);
+            $propiedad->eliminar();
 
-            //Eliminar la prpiedad
-            $query = "delete from propiedades where id = {$id};";
-            $resultado = mysqli_query($db, $query);
-
-            if($resultado){
-                header('location: /admin?resultado=3');
-            }
         }
     }
 

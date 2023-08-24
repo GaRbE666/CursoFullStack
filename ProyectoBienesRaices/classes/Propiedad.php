@@ -84,7 +84,6 @@ class Propiedad{
         $query .= " LIMIT 1";
 
         $resultado = self::$db->query($query);
-
         
         if($resultado){
             //redireccionar al usuario
@@ -104,6 +103,18 @@ class Propiedad{
 
         return $sanitizado;
 
+    }
+
+    //Eliminar un registro
+    public function eliminar(){
+        $query = "delete from propiedades where id = " . self::$db->escape_string($this->id) . " LIMIT 1";
+
+        $resultado = self::$db->query($query);
+
+        if($resultado){
+            $this->borrarImagen();
+            header("location: /admin?resultado=3");
+        }
     }
 
     //Identificar y unir los atributos de la BD
@@ -169,11 +180,7 @@ class Propiedad{
 
         //Eliminar imagen previa
         if(isset($this->id)){
-            //Comprobar si existe el archivo
-            $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
-            if($existeArchivo){
-                unlink(CARPETA_IMAGENES . $this->imagen);
-            }
+            $this->borrarImagen();
         }
 
         //Asignar al atributo de imagen el nombre de la imagen
@@ -181,6 +188,15 @@ class Propiedad{
             $this->imagen = $imagen;
         }
         
+    }
+
+    //Eliminar archivo
+    public function borrarImagen() {
+        //Comprobar si existe el archivo
+        $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
+        if($existeArchivo){
+            unlink(CARPETA_IMAGENES . $this->imagen);
+        }        
     }
 
     //Definir la conexion a la BD
