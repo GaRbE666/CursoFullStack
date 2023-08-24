@@ -11,7 +11,10 @@ class ActiveRecord{
     protected static $errores = [];
 
 
-
+    //Definir la conexion a la BD
+    public static function setDB($dataBase){
+        self::$db = $dataBase;
+    }
 
 
     public function guardar() {
@@ -101,7 +104,7 @@ class ActiveRecord{
 
         $atributos = [];
 
-        foreach(self::$columnasDb as $columna){
+        foreach(static::$columnasDb as $columna){
             if($columna ==='id'){
                 continue;
             }
@@ -146,11 +149,6 @@ class ActiveRecord{
         }        
     }
 
-    //Definir la conexion a la BD
-    public static function setDB($dataBase){
-        self::$db = $dataBase;
-    }
-
     //Lista todas las propiedades
     public static function all() {
         $query = "select * from " . static::$tabla;
@@ -176,7 +174,7 @@ class ActiveRecord{
         //Iterar los resultados
         $array = [];
         while($registro = $resultado->fetch_assoc()){
-            $array[] = self::crearObjeto($registro);
+            $array[] = static::crearObjeto($registro);
         }
 
         //Liberar la memoria
