@@ -6,4 +6,6 @@
 
     $router = new Router();
 
+    $router->comrprobarRutas();
+
 ?>
