@@ -2,7 +2,7 @@
     "name": "jaime/proyecto-bienes-raices",
     "autoload": {
         "psr-4": {
-            "Jaime\\ProyectoBienesRaices\\": "src/"
+            "Model\\": "./models"
         }
     },
     "authors": [
@@ -11,5 +11,7 @@
             "email": "jaimegon17@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "intervention/image": "^2.5"
+    }
 }

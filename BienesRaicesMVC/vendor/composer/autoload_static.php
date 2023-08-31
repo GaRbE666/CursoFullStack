@@ -15,9 +15,9 @@ class ComposerStaticInit615da492cedbca2654c0399afad1805b
         array (
             'Psr\\Http\\Message\\' => 17,
         ),
-        'J' => 
+        'M' => 
         array (
-            'Jaime\\ProyectoBienesRaices\\' => 27,
+            'Model\\' => 6,
         ),
         'I' => 
         array (
@@ -35,9 +35,9 @@ class ComposerStaticInit615da492cedbca2654c0399afad1805b
             0 => __DIR__ . '/..' . '/psr/http-message/src',
             1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
-        'Jaime\\ProyectoBienesRaices\\' => 
+        'Model\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src',
+            0 => __DIR__ . '/../..' . '/models',
         ),
         'Intervention\\Image\\' => 
         array (

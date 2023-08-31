@@ -3,7 +3,7 @@
         'name' => 'jaime/proyecto-bienes-raices',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '402b14798e306a9b90fcdfca4a2d9bfad63afe13',
+        'reference' => 'd2cc672e20d38623090710fa1fc27395a007ff1a',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'guzzlehttp/psr7' => array(
-            'pretty_version' => '2.6.0',
-            'version' => '2.6.0.0',
-            'reference' => '8bd7c33a0734ae1c5d074360512beb716bef3f77',
+            'pretty_version' => '2.6.1',
+            'version' => '2.6.1.0',
+            'reference' => 'be45764272e8873c72dbe3d2edcfdfcc3bc9f727',
             'type' => 'library',
             'install_path' => __DIR__ . '/../guzzlehttp/psr7',
             'aliases' => array(),
@@ -31,7 +31,7 @@
         'jaime/proyecto-bienes-raices' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '402b14798e306a9b90fcdfca4a2d9bfad63afe13',
+            'reference' => 'd2cc672e20d38623090710fa1fc27395a007ff1a',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
