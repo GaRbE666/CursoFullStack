@@ -3,7 +3,7 @@
         'name' => 'jaime/proyecto-bienes-raices',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'd2cc672e20d38623090710fa1fc27395a007ff1a',
+        'reference' => 'c0811b890ee88be6f2899f356e8cf67dcfcd6edc',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -31,7 +31,7 @@
         'jaime/proyecto-bienes-raices' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'd2cc672e20d38623090710fa1fc27395a007ff1a',
+            'reference' => 'c0811b890ee88be6f2899f356e8cf67dcfcd6edc',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
