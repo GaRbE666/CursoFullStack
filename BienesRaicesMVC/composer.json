@@ -1,0 +1,15 @@
+{
+    "name": "jaime/proyecto-bienes-raices",
+    "autoload": {
+        "psr-4": {
+            "Jaime\\ProyectoBienesRaices\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "GaRbE666",
+            "email": "jaimegon17@gmail.com"
+        }
+    ],
+    "require": {}
+}
