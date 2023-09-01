@@ -6,7 +6,7 @@ use MVC\Router;
 class PropiedadController{
     
     public static function index(Router $router){
-        $router->render('propiedades/admin');
+        $router->render('propiedades/admin', ['mensaje' => 'desde la vista']);
     }
 
     public static function create(){
