@@ -14,7 +14,7 @@
             <legend>Informaci&oacute;n Personal</legend>
 
             <label for="nombre">Nombre</label>
-            <input type="text" placeholder="Tu Nombre" id="nombre" name="contacto[name]" required>
+            <input type="text" placeholder="Tu Nombre" id="nombre" name="contacto[nombre]" required>
 
             <label for="email">E-mail</label>
             <input type="email" placeholder="Tu Email" id="email" name="contacto[email]" required>
@@ -47,10 +47,10 @@
 
             <div class="forma-contacto">
                 <label for="contactar-telefono">Tel&eacute;fono</label>
-                <input name="contacto" type="radio" value="telefono" id="contactar-telefono" name="contacto[contacto]" required>
+                <input type="radio" value="telefono" id="contactar-telefono" name="contacto[contacto]" required>
 
                 <label for="contactar-email">E-mail</label>
-                <input name="contacto" type="radio" value="telefono" id="contactar-email" name="contacto[contacto]" required>
+                <input type="radio" value="telefono" id="contactar-email" name="contacto[contacto]" required>
             </div>
 
             <p>Si eligi&oacute; tel&eacute;fono, elija la fecha y la hora</p>
