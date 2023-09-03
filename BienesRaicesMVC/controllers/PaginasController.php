@@ -31,8 +31,15 @@ class PaginasController{
 
     }
 
-    public static function propiedad(){
-        
+    public static function propiedad(Router $router){
+
+        $id = validarORedireccionar('/propiedades');
+
+        //Buscar la porpiedad por su id
+        $propiedad = Propiedad::findById($id);
+
+        $router->render('paginas/propiedad', ['propiedad' => $propiedad]);
+
     }
 
     public static function blog(){
