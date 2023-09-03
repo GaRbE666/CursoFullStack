@@ -9,6 +9,10 @@
 
     <h2>Llene el formualrio de Contacto</h2>
 
+    <?php if($mensaje){ ?>
+            <p class="alerta exito"> <?php echo $mensaje; ?> </p>
+    <?php } ?>
+
     <form class="formulario" action="/contacto" method="POST">
         <fieldset>
             <legend>Informaci&oacute;n Personal</legend>
