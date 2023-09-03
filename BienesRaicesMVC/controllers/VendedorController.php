@@ -34,7 +34,7 @@ class VendedorController{
     }
 
     public static function update(Router $router){
-        
+
         $errores = Vendedor::getErrores();
         $id = validarORedireccionar('/admin');
 
@@ -63,6 +63,24 @@ class VendedorController{
     }
 
     public static function eliminar(){
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+            //Validar el id
+            $id = $_POST['id'];
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+            
+            if($id){
+                //Valida el tipo eliminar
+                $tipo = $_POST['tipo'];
+
+                if(validarTipoContenido($tipo)){
+                    $vendedor = Vendedor::findById($id);
+                    $vendedor->eliminar();
+                }
+            }
+
+        }
 
     }
 
