@@ -40,7 +40,7 @@
                         <a href="/blog">Blog</a>
                         <a href="/contacto">Contactos</a>
                         <?php if($auth): ?>
-                            <a href="/cerrar-sesion">Cerrar Sesi&oacute;n</a>
+                            <a href="/logout">Cerrar Sesi&oacute;n</a>
                         <?php endif;?>
                     </nav>
                 </div>
