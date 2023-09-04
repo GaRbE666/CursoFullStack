@@ -127,11 +127,3 @@ class PaginasController{
 }
 
 ?>
-
-
-MAIL_MAILER=smtp
-MAIL_HOST=sandbox.smtp.mailtrap.io
-MAIL_PORT=2525
-MAIL_USERNAME=400767590fae95
-MAIL_PASSWORD=b9c6fdcddb4618
-MAIL_ENCRYPTION=tls
