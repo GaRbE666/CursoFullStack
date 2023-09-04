@@ -20,6 +20,18 @@ class Admin extends ActiveRecord{
 
     }
 
+    public function validar(){
+        if(!$this->email){
+            self::$errores[] = 'El email es obliatorio';
+        }
+
+        if(!$this->password){
+            self::$errores[] = 'El Password es obliatorio';
+        }
+
+        return self::$errores;
+    }
+
 }
 
 ?>
