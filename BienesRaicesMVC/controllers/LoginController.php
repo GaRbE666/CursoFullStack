@@ -11,8 +11,8 @@ class LoginController{
         $errores = [];
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            $auth = new Admin($_POST);
 
+            $auth = new Admin($_POST);
             $errores = $auth->validar();
 
             if(empty($errores)){
@@ -24,10 +24,16 @@ class LoginController{
                 }else{
 
                     //Verificar el password
+                    $autenticado = $auth->comprobarPassword($resultado);
 
-                    //Autenticar el usuario
+                    if($autenticado){
+                        //Autenticar el usuario
+
+                    }else{
+                        //Password incorrecto (Mensaje de error)
+                        $errores = Admin::getErrores();
+                    }  
                 }
-
             }
         }
 
